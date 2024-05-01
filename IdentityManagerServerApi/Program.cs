@@ -1,10 +1,12 @@
 using IdentityManagerServerApi.Data;
+using IdentityManagerServerApi.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using SharedClassLibrary.Contacts;
 using Swashbuckle.AspNetCore.Filters;
 using System.Globalization;
 using System.Text;
@@ -61,6 +63,8 @@ builder.Services.AddSwaggerGen(options =>
     });
     options.OperationFilter<SecurityRequirementsOperationFilter>();
 });
+
+builder.Services.AddScoped<IUserAccount, AccountRepository>();
 
 //Ending
 var app = builder.Build();
